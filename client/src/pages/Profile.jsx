@@ -49,7 +49,7 @@ export default function Profile() {
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-center text-3xl font-semibold my-7 ">Profile</h1>
       <form className="flex flex-col gap-4 ">
-        <div className="h-24 w-24 self-center   mt-2 relative">
+        <div className="flex justify-center mt-2 relative">
           <input
             type="file"
             ref={profileImageInput}
@@ -60,13 +60,13 @@ export default function Profile() {
           <img
             src="/update.png"
             alt="update_icon"
-            className="size-8 absolute right-0 bottom-0 cursor-pointer"
+            className="size-8 absolute right-[40%] bottom-0 cursor-pointer"
             onClick={() => profileImageInput.current.click()}
           />
           <img
-            src={currentUser.profilePicture}
+            src={formData.profilePicture || currentUser.profilePicture}
             alt="profile"
-            className="object-cover rounded-full"
+            className="object-cover h-24 w-24 self-center rounded-full shadow-md"
           />
         </div>
         <p className="min-h-7 self-center">
