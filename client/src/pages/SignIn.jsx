@@ -8,7 +8,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth.jsx";
 
-
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
@@ -43,10 +42,12 @@ export default function SignIn() {
       dispatch(signInFailure(error));
     }
   };
- 
+
   return (
     <div className="p-3 max-w-lg mx-auto mt-14">
-      <h1 className="text-3xl text-center font-semibold my-7">Iniciar Sesión</h1>
+      <h1 className="text-3xl text-center font-semibold my-7">
+        Iniciar Sesión
+      </h1>
       <form
         className="flex flex-col gap-4"
         autoComplete="off"

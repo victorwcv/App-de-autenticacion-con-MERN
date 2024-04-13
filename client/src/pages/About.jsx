@@ -1,10 +1,10 @@
 export default function About() {
   return (
     <div className="flex flex-col px-4 py-12 max-w-5xl mx-auto mt-14">
-      <h1 className="text-3xl font-bold mb-6 text-neutral-700 text-center">
+      <h1 className="text-3xl font-bold mb-6  text-center">
         Cómo Utilizar
       </h1>
-      <div className="flex flex-col gap-6 text-neutral-600">
+      <div className="flex flex-col gap-6 ">
         <p>
           ¡Bienvenido a mi proyecto de portafolio! Aquí tienes una guía rápida
           sobre cómo utilizar la aplicación de autenticación que he

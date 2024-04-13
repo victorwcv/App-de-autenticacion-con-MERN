@@ -6,6 +6,10 @@ h2 {
   @apply font-semibold;
 }
 
-.active{
+.active {
   @apply text-neutral-950 font-semibold;
+}
+
+* {
+  @apply text-neutral-700;
 }

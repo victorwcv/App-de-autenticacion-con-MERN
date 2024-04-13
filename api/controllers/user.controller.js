@@ -28,7 +28,7 @@ export const updateUser = async (req, res, next) => {
       },
       { new: true } // it returns the new value instead of the old one
     );
-    const {password, ...rest} = updatedUser._doc;
+    const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
   } catch (error) {
     next(error);
@@ -37,12 +37,12 @@ export const updateUser = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
-    return next(errorHandler(401, 'You can delete only your account'));
+    return next(errorHandler(401, "You can delete only your account"));
   }
   try {
     await User.findByIdAndDelete(req.params.id);
-    res.status(200).json('User has been deleted');
+    res.status(200).json("User has been deleted");
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};

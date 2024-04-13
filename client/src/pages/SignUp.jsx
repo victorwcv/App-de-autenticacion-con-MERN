@@ -16,7 +16,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!formData.username || !formData.email || !formData.password) return;
+    if (!formData.username || !formData.email || !formData.password) return;
     try {
       setLoading(true);
       setError(false);
@@ -32,8 +32,7 @@ export default function SignUp() {
         setError(true);
         return;
       }
-      navigate('/sign-in');
-
+      navigate("/sign-in");
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -78,7 +77,7 @@ export default function SignUp() {
         <OAuth />
       </form>
       <div className="flex gap-4 my-4">
-        <p>Ya tienes una  cuenta?</p>
+        <p>Ya tienes una cuenta?</p>
         <Link to={"/sign-in"}>
           <span className="text-blue-500">Iniciar Sesión</span>
         </Link>

@@ -106,16 +106,18 @@ export default function Profile() {
   const handleSignout = async () => {
     // sign out the current user by removing token from local storage
     try {
-      await fetch('/api/auth/signout');
+      await fetch("/api/auth/signout");
       dispatch(signOut());
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div className="p-3 max-w-lg mx-auto mt-14">
-      <h1 className="text-center text-3xl font-semibold my-7 ">Perfil de Usuario</h1>
+      <h1 className="text-center text-3xl font-semibold my-7 ">
+        Perfil de Usuario
+      </h1>
       <form className="flex flex-col gap-4 " onSubmit={handleFormSubmit}>
         <div className="flex justify-center mt-2 mx-auto size-32 relative">
           <input
@@ -186,7 +188,9 @@ export default function Profile() {
         >
           Eliminar Cuenta
         </span>
-        <span onClick={handleSignout} className="text-red-500 cursor-pointer">Cerrar Sesión</span>
+        <span onClick={handleSignout} className="text-red-500 cursor-pointer">
+          Cerrar Sesión
+        </span>
       </div>
       <p className="text-red-500 mt-5">{error && "Algo salió mal!"}</p>
       <p className="text-green-600 mt-5">

@@ -1,11 +1,11 @@
 export default function Home() {
   return (
     <div className="flex flex-col px-4 py-12 max-w-5xl mx-auto mt-14">
-      <h1 className="text-3xl font-bold mb-6 text-neutral-700 text-center">
+      <h1 className="text-3xl font-bold mb-6 text-center">
         ¡Bienvenido a mi aplicación de autenticación segura!
       </h1>
       <div className="flex flex-wrap justify-center min-w-80  gap-6 items-center">
-        <div className="flex flex-col max-w-screen-sm gap-6 my-8 text-neutral-600">
+        <div className="flex flex-col max-w-screen-sm gap-6 my-8">
           <p>
             Construida con el stack MERN (MongoDB, Express, React y Node.js), mi
             aplicación ofrece una experiencia de autenticación robusta y
@@ -32,7 +32,7 @@ export default function Home() {
             los usuarios, garantizando un almacenamiento seguro y eficiente.
           </p>
         </div>
-          <img className="size-80 mx-auto" src="secure.png" alt="secure icon" />
+        <img className="size-80 mx-auto" src="secure.png" alt="secure icon" />
       </div>
     </div>
   );
