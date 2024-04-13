@@ -8,7 +8,14 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
-import { updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice";
+import {
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
+} from "../redux/user/userSlice";
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -51,16 +58,16 @@ export default function Profile() {
 
   const handleFormChanges = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(updateUserStart())
+      dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -75,13 +82,31 @@ export default function Profile() {
     } catch (error) {
       dispatch(updateUserFailure(error));
     }
-  }
+  };
+
+  const handleDeleteAccount = async () => {
+    // delete user account and then redirect to homepage
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure());
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure());
+    }
+  };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-center text-3xl font-semibold my-7 ">Profile</h1>
       <form className="flex flex-col gap-4 " onSubmit={handleFormSubmit}>
-        <div className="flex justify-center mt-2 relative">
+        <div className="flex justify-center mt-2 mx-auto size-32 relative">
           <input
             type="file"
             ref={profileImageInput}
@@ -92,13 +117,13 @@ export default function Profile() {
           <img
             src="/update.png"
             alt="update_icon"
-            className="size-8 absolute right-[40%] bottom-0 cursor-pointer"
+            className="size-8 absolute right-0 bottom-0 cursor-pointer"
             onClick={() => profileImageInput.current.click()}
           />
           <img
             src={formData.profilePicture || currentUser.profilePicture}
             alt="profile"
-            className="object-cover h-24 w-24 self-center rounded-full shadow-md"
+            className=" rounded-full h-32 w-32 object-cover shadow-md "
           />
         </div>
         <p className="min-h-7 self-center">
@@ -140,15 +165,22 @@ export default function Profile() {
           onChange={handleFormChanges}
         />
         <button className="bg-gray-700 text-white p-3 rounded-xl  uppercase hover:opacity-95 disabled:opacity-80">
-          {loading ? 'loading' : 'update'}
+          {loading ? "loading" : "update"}
         </button>
       </form>
       <div className="flex justify-between mt-5">
-        <span className="text-red-500 cursor-pointer">Delete Account</span>
+        <span
+          onClick={handleDeleteAccount}
+          className="text-red-500 cursor-pointer"
+        >
+          Delete Account
+        </span>
         <span className="text-red-500 cursor-pointer">Sign out</span>
       </div>
-      <p className="text-red-500 mt-5">{error && 'Something went wrong!'}</p>
-      <p className="text-green-600 mt-5">{updateSuccess && 'User was updated successfully!'}</p>
+      <p className="text-red-500 mt-5">{error && "Something went wrong!"}</p>
+      <p className="text-green-600 mt-5">
+        {updateSuccess && "User was updated successfully!"}
+      </p>
     </div>
   );
 }
