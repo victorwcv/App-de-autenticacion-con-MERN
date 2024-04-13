@@ -12,6 +12,7 @@ import {
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
+  signOut,
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
@@ -102,6 +103,16 @@ export default function Profile() {
     }
   };
 
+  const handleSignout = async () => {
+    // sign out the current user by removing token from local storage, then navigate to login page
+    try {
+      await fetch('/api/auth/signout');
+      dispatch(signOut());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-center text-3xl font-semibold my-7 ">Profile</h1>
@@ -175,7 +186,7 @@ export default function Profile() {
         >
           Delete Account
         </span>
-        <span className="text-red-500 cursor-pointer">Sign out</span>
+        <span onClick={handleSignout} className="text-red-500 cursor-pointer">Sign out</span>
       </div>
       <p className="text-red-500 mt-5">{error && "Something went wrong!"}</p>
       <p className="text-green-600 mt-5">
