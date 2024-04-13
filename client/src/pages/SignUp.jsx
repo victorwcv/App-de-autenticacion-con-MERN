@@ -41,8 +41,8 @@ export default function SignUp() {
   };
   //66
   return (
-    <div className="p-3 max-w-lg m-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+    <div className="p-3 max-w-lg mx-auto mt-14">
+      <h1 className="text-3xl text-center font-semibold my-7">Registrarse</h1>
       <form
         className="flex flex-col gap-4"
         autoComplete="off"
@@ -50,37 +50,37 @@ export default function SignUp() {
       >
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Nombre de Usuario"
           id="username"
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
         <input
           type="email"
-          placeholder="E-mail"
+          placeholder="Correo electrónico"
           id="email"
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
           id="password"
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
         <button
           disabled={loading}
-          className="bg-gray-600 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Sign up"}
+          {loading ? "Cargando..." : "crear cuenta"}
         </button>
         <OAuth />
       </form>
       <div className="flex gap-4 my-4">
-        <p>Have an account?</p>
+        <p>Ya tienes una  cuenta?</p>
         <Link to={"/sign-in"}>
-          <span className="text-blue-500">Sign In</span>
+          <span className="text-blue-500">Iniciar Sesión</span>
         </Link>
       </div>
       <p className="text-red-600 mt-5">{error && "Somentrhing went wrong"}</p>

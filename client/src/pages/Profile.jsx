@@ -104,7 +104,7 @@ export default function Profile() {
   };
 
   const handleSignout = async () => {
-    // sign out the current user by removing token from local storage, then navigate to login page
+    // sign out the current user by removing token from local storage
     try {
       await fetch('/api/auth/signout');
       dispatch(signOut());
@@ -114,8 +114,8 @@ export default function Profile() {
   }
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-center text-3xl font-semibold my-7 ">Profile</h1>
+    <div className="p-3 max-w-lg mx-auto mt-14">
+      <h1 className="text-center text-3xl font-semibold my-7 ">Perfil de Usuario</h1>
       <form className="flex flex-col gap-4 " onSubmit={handleFormSubmit}>
         <div className="flex justify-center mt-2 mx-auto size-32 relative">
           <input
@@ -139,11 +139,11 @@ export default function Profile() {
         </div>
         <p className="min-h-7 self-center">
           {imageError ? (
-            <span className="text-red-500">Error uploading image</span>
+            <span className="text-red-500">Error cargando la imagen</span>
           ) : imagePercent > 0 && imagePercent < 100 ? (
             <span className="text-neutral-500">{`${imagePercent}% Uploaded...`}</span>
           ) : imagePercent === 100 ? (
-            <span className="text-green-600">Image uploaded successfully</span>
+            <span className="text-green-600">Imagen cargada exitosamente</span>
           ) : (
             ""
           )}
@@ -154,7 +154,7 @@ export default function Profile() {
           type="text"
           name="username"
           id="username"
-          placeholder="Username"
+          placeholder="Nuevo nombre de usuario"
           className="bg-gray-200 rounded-lg p-3"
           onChange={handleFormChanges}
         />
@@ -163,7 +163,7 @@ export default function Profile() {
           type="email"
           name="email"
           id="email"
-          placeholder="E-mail"
+          placeholder="Nuevo correo electrónico"
           className="bg-gray-200 rounded-lg p-3"
           onChange={handleFormChanges}
         />
@@ -171,12 +171,12 @@ export default function Profile() {
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          placeholder="Nueva contraseña"
           className="bg-gray-200 rounded-lg p-3"
           onChange={handleFormChanges}
         />
         <button className="bg-gray-700 text-white p-3 rounded-xl  uppercase hover:opacity-95 disabled:opacity-80">
-          {loading ? "loading" : "update"}
+          {loading ? "cargando..." : "actualizar"}
         </button>
       </form>
       <div className="flex justify-between mt-5">
@@ -184,13 +184,13 @@ export default function Profile() {
           onClick={handleDeleteAccount}
           className="text-red-500 cursor-pointer"
         >
-          Delete Account
+          Eliminar Cuenta
         </span>
-        <span onClick={handleSignout} className="text-red-500 cursor-pointer">Sign out</span>
+        <span onClick={handleSignout} className="text-red-500 cursor-pointer">Cerrar Sesión</span>
       </div>
-      <p className="text-red-500 mt-5">{error && "Something went wrong!"}</p>
+      <p className="text-red-500 mt-5">{error && "Algo salió mal!"}</p>
       <p className="text-green-600 mt-5">
-        {updateSuccess && "User was updated successfully!"}
+        {updateSuccess && "Actualizado correctamente"}
       </p>
     </div>
   );

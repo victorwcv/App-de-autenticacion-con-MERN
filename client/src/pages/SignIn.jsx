@@ -45,8 +45,8 @@ export default function SignIn() {
   };
  
   return (
-    <div className="p-3 max-w-lg m-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
+    <div className="p-3 max-w-lg mx-auto mt-14">
+      <h1 className="text-3xl text-center font-semibold my-7">Iniciar Sesión</h1>
       <form
         className="flex flex-col gap-4"
         autoComplete="off"
@@ -54,30 +54,30 @@ export default function SignIn() {
       >
         <input
           type="email"
-          placeholder="E-mail"
+          placeholder="Correo electrónico"
           id="email"
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
           id="password"
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
         <button
           disabled={loading}
-          className="bg-gray-600 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Sign In"}
+          {loading ? "Cargando..." : "Ingresar"}
         </button>
         <OAuth />
       </form>
       <div className="flex gap-4 my-4">
-        <p>{"Don't have an account?"}</p>
+        <p>{"No tienes una cuenta?"}</p>
         <Link to={"/sign-up"}>
-          <span className="text-blue-500">Sign Up</span>
+          <span className="text-blue-500">Registrarse</span>
         </Link>
       </div>
       <p className="text-red-600 mt-5">
