@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -11,6 +12,16 @@ const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+// For deploy as SPA
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
+
 // Middleware to parse cookies
 app.use(cookieParser());
 
@@ -24,7 +35,7 @@ mongoose
     console.error(err);
   });
 
-  // Start the server
+// Start the server
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
@@ -38,7 +49,7 @@ app.use((err, req, res, next) => {
   // Set status code and message based on error or default values
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
-   // Send JSON response with error details
+  // Send JSON response with error details
   return res.status(statusCode).json({
     success: false,
     message,
