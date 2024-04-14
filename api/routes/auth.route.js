@@ -8,9 +8,10 @@ import {
 
 const router = express.Router();
 
-router.post("/signup", signup);
-router.post("/signin", signin);
-router.post("/google", google);
-router.get("/signout", signout);
+// Define routes for user authentication
+router.post("/signup", signup); // Route for user signup
+router.post("/signin", signin); // Route for user signin
+router.post("/google", google); // Route for Google OAuth signin
+router.get("/signout", signout); // Route for user signout
 
 export default router;

@@ -19,6 +19,8 @@ import {
 } from "../redux/user/userSlice";
 
 export default function Profile() {
+
+  // Retrieve user data from Redux store
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [image, setImage] = useState(undefined);
   const [imagePercent, setImagePercent] = useState(0);
@@ -28,12 +30,14 @@ export default function Profile() {
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
 
+  // Upload image when it's changed
   useEffect(() => {
     if (image) {
       handleFileUpload(image);
     }
   }, [image]);
 
+  // Handle file upload to Firebase Storage
   const handleFileUpload = async (image) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + image.name;
@@ -57,6 +61,7 @@ export default function Profile() {
     );
   };
 
+  // Update form data on input change
   const handleFormChanges = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -85,8 +90,8 @@ export default function Profile() {
     }
   };
 
+  // Delete user account
   const handleDeleteAccount = async () => {
-    // delete user account and then redirect to homepage
     try {
       dispatch(deleteUserStart());
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
@@ -103,6 +108,7 @@ export default function Profile() {
     }
   };
 
+  // Handle user signout
   const handleSignout = async () => {
     // sign out the current user by removing token from local storage
     try {

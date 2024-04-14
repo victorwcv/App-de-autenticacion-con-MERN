@@ -7,6 +7,7 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Handle input change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -14,8 +15,10 @@ export default function SignUp() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if required fields are filled
     if (!formData.username || !formData.email || !formData.password) return;
     try {
       setLoading(true);
@@ -28,6 +31,7 @@ export default function SignUp() {
       const data = await res.json();
       console.log(data);
       setLoading(false);
+       // Handle success or failure response
       if (data.succes === false) {
         setError(true);
         return;
@@ -47,6 +51,7 @@ export default function SignUp() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+         {/* Input fields */}
         <input
           type="text"
           placeholder="Nombre de Usuario"
@@ -68,20 +73,24 @@ export default function SignUp() {
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
+        {/* Submit button */}
         <button
           disabled={loading}
           className="bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Cargando..." : "crear cuenta"}
         </button>
+        {/* OAuth component */}
         <OAuth />
       </form>
+      {/* Link to sign in page */}
       <div className="flex gap-4 my-4">
         <p>Ya tienes una cuenta?</p>
         <Link to={"/sign-in"}>
           <span className="text-blue-500">Iniciar Sesión</span>
         </Link>
       </div>
+      {/* Error message display */}
       <p className="text-red-600 mt-5">{error && "Somentrhing went wrong"}</p>
     </div>
   );

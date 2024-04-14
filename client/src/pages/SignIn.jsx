@@ -14,6 +14,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Handle input change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,6 +22,7 @@ export default function SignIn() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -53,6 +55,7 @@ export default function SignIn() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
+        {/* Input fields */}
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -67,20 +70,24 @@ export default function SignIn() {
           className="bg-gray-100 p-3 rounded-lg"
           onChange={handleChange}
         />
+        {/* Submit button */}
         <button
           disabled={loading}
           className="bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Cargando..." : "Ingresar"}
         </button>
+        {/* OAuth component */}
         <OAuth />
       </form>
+      {/* Link to sign up page */}
       <div className="flex gap-4 my-4">
         <p>{"No tienes una cuenta?"}</p>
         <Link to={"/sign-up"}>
           <span className="text-blue-500">Registrarse</span>
         </Link>
       </div>
+      {/* Error message display */}
       <p className="text-red-600 mt-5">
         {error ? error.message || "Somentrhing went wrong" : ""}
       </p>
