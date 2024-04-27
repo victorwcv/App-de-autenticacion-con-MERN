@@ -183,7 +183,7 @@ export default function Profile() {
           className="bg-gray-200 rounded-lg p-3"
           onChange={handleFormChanges}
         />
-        <button className="bg-gray-700 text-white p-3 rounded-xl  uppercase hover:opacity-95 disabled:opacity-80">
+        <button className="bg-blue-500 text-white p-3 rounded-xl  uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? "cargando..." : "actualizar"}
         </button>
       </form>
